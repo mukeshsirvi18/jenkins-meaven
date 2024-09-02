@@ -16,6 +16,13 @@ pipeline {
             }
         }
         
+        stage('Run Application') {
+            steps {
+                // Run the Java application
+                sh 'java -cp target/jenkins-meaven-1.0-SNAPSHOT.jar com.example.App'
+            }
+        }
+        
         stage('Test') {
             steps {
                 // Run tests (optional)
