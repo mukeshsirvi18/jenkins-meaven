@@ -16,27 +16,27 @@ pipeline {
             }
         }
         
-        stage('Run Application') {
-            steps {
-                // Run the Java application
-                sh 'java -cp target/jenkins-meaven-1.0-SNAPSHOT.jar com.example.App'
-            }
-        }
-        
         stage('Test') {
             steps {
                 // Run tests (optional)
                 sh 'mvn test'
             }
         }
+        
+        stage('Run Application') {
+            steps {
+                // Run the Java application and display output
+                sh 'java -cp target/jenkins-meaven-1.0-SNAPSHOT.jar com.example.App'
+            }
+        }
     }
     
     post {
         success {
-            echo 'Build and Test Completed Successfully!'
+            echo 'Build, Test, and Run Completed Successfully!'
         }
         failure {
-            echo 'Build or Test Failed!'
+            echo 'Build, Test, or Run Failed!'
         }
     }
 }
